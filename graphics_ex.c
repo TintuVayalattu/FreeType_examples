@@ -8,13 +8,13 @@
 #include FT_FREETYPE_H
 
 
-#define WIDTH   200
-#define HEIGHT  200
+#define WIDTH   500
+#define HEIGHT  480
 
 
 /* origin is the upper left corner */
 unsigned char image[HEIGHT][WIDTH];
-
+const uint16_t text[] = {0x0d15, 0x0d41, 0x0d1f, 0x0d4d, 0x0d1f, 0x0d3f, 0x0d15, 0x0d4d, 0x0d15, 0x0d3e, 0x0d32, 0x0d02};
 
 /* Replace this function with something useful. */
 
@@ -84,22 +84,22 @@ int main( int     argc,
 	FT_Error      error;
 
 	char*         filename;
-	char*         text;
+	// char*         text;
 
 	double        angle;
 	int           target_height;
 	int           n, num_chars;
 
 
-	if ( argc != 3 )
+	if ( argc != 2 )
 	{
-	fprintf ( stderr, "usage: %s font sample-text\n", argv[0] );
-	exit( 1 );
+		fprintf ( stderr, "usage: %s font\n", argv[0] );
+		exit( 1 );
 	}    
 
 	filename      = argv[1];                           /* first argument     */
-	text          = argv[2];                           /* second argument    */
-	num_chars     = strlen( text );
+	// text          = argv[2];                           /* second argument    */
+	num_chars     = sizeof( text )/2;
 	angle         = ( 0.0 / 360 ) * 3.14159 * 2;      /* use 25 degrees     */
 	target_height = HEIGHT;
 

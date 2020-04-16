@@ -1,24 +1,24 @@
-IDIR =/usr/include/freetype2
-CC=gcc
-CFLAGS=-I$(IDIR)
+IDIR =/usr/include/freetype2 /usr/local/include/harfbuzz
+CC = gcc
+CFLAGS = $(addprefix -I,$(IDIR))
 
 ODIR=obj
-LDIR =../lib
+LDIR =/usr/local/lib
 
-LIBS=-lgraph -lfreetype -lm
+LIBS=-lgraph -lfreetype -lm -lharfbuzz
 
 _DEPS =
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = graphics_ex.o 
+_OBJ = harfbuzz_ex.o 
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-graphics_ex: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+harfbuzz_ex: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS) -L$(LDIR) $(LIBS)
 
 .PHONY: clean
 

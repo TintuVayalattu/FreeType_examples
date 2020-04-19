@@ -89,21 +89,21 @@ int main( int     argc,
 	FT_Int glyph_count;
 
 	char*         filename;
-	// char*         text;
+	char*         text;
 
 	double        angle;
 	int           target_height;
 	int           n, num_chars;
 
 
-	if ( argc != 2 )
+	if ( argc != 3 )
 	{
 		fprintf ( stderr, "usage: %s font\n", argv[0] );
 		exit( 1 );
 	}
 
 	filename      = argv[1];                           /* first argument     */
-	// text          = argv[2];                           /* second argument    */
+	text          = argv[2];                           /* second argument    */
 	num_chars     = sizeof( text )/2;
 	angle         = ( 0.0 / 360 ) * 3.14159 * 2;      /* use 25 degrees     */
 	target_height = HEIGHT;
@@ -112,7 +112,7 @@ int main( int     argc,
 
 	hb_buffer_t *buf;
 	buf = hb_buffer_create();
-	hb_buffer_add_utf8(buf, textMal, -1, 0, -1);
+	hb_buffer_add_utf8(buf, text, -1, 0, -1);
 
 	hb_buffer_set_direction(buf, HB_DIRECTION_LTR);
 	hb_buffer_set_script(buf, HB_SCRIPT_MALAYALAM);

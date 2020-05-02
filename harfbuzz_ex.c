@@ -98,7 +98,7 @@ int main( int     argc,
 
 	if ( argc != 3 )
 	{
-		fprintf ( stderr, "usage: %s font\n", argv[0] );
+		fprintf ( stderr, "usage:%s \"fonts/Rachana-Regular.ttf\" \"കുട്ടിക്കാലം\"\n", argv[0] );
 		exit( 1 );
 	}
 

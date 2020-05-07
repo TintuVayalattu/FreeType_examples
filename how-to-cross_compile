@@ -1,0 +1,21 @@
+
+Steps to cross compile FreeType for cortex-m3
+---------------------------------------------------
+1. Limit options
+--------------------
+uncomment these in /include/freetype/config/ftoption.h
+	* TT_CONFIG_OPTION_EMBEDDED_BITMAPS
+	
+2. configure
+---------------
+
+$ CFLAGS="-std=gnu99 --specs=nosys.specs -mcpu=cortex-m3 -Os"  ./configure --host=arm-none-eabi --prefix=/freetype --without-zlib --without-bzip2 --without-libpng --without-harfbuzz
+
+3. make
+------------
+$ make
+
+4. install
+------------
+$ sudo make DESTDIR=$(pwd)"/output" install
+
